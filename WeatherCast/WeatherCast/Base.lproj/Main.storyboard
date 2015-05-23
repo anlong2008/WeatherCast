@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="7hG-Qr-cFr">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+    </dependencies>
+    <scenes>
+        <!--City List-->
+        <scene sceneID="Mgq-MB-62q">
+            <objects>
+                <tableViewController id="iLc-Zc-pbo" customClass="CityListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ayM-fS-FQW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Ump-97-y41">
+                                <rect key="frame" x="0.0" y="114" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ump-97-y41" id="T5F-Kx-tKU">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Aau-lg-OsH" kind="push" id="poy-LU-ppm"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iLc-Zc-pbo" id="zYg-Zf-ay1"/>
+                            <outlet property="delegate" destination="iLc-Zc-pbo" id="kHd-T5-hbG"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="City List" id="mV7-Jk-4J1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nIj-wo-aCL">
+                            <connections>
+                                <segue destination="yJp-W5-DyN" kind="push" id="cBv-3R-IOp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHd-Hw-wuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="594.66666666666663" y="245.18666666666667"/>
+        </scene>
+        <!--Add New City-->
+        <scene sceneID="0SH-IS-euL">
+            <objects>
+                <viewController id="yJp-W5-DyN" customClass="AddCityViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bxe-8K-jdv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter new city" minimumFontSize="17" id="n2f-Sh-wmg">
+                                <rect key="frame" x="9" y="105" width="302" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add New City" id="7zF-ig-iXQ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="b8V-ZH-Y9X">
+                            <connections>
+                                <segue destination="tFO-oH-2vd" kind="unwind" unwindAction="popForSegue:" id="04G-8F-Ux1"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="S0o-i1-9fy">
+                            <connections>
+                                <segue destination="tFO-oH-2vd" kind="unwind" unwindAction="popForSegue:" id="YMv-rk-LFL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cancelItemBar" destination="b8V-ZH-Y9X" id="IhC-jf-UeM"/>
+                        <outlet property="cityTextField" destination="n2f-Sh-wmg" id="lQp-DD-tWL"/>
+                        <outlet property="doneItemBar" destination="S0o-i1-9fy" id="Yyr-DT-9Qu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6zW-ey-S6j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="tFO-oH-2vd" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1031" y="245"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vpw-tY-dcC">
+            <objects>
+                <viewController id="Aau-lg-OsH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y5l-OQ-m08">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="f6S-Gh-Yk3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t5M-tg-ng0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="594" y="1068"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ah0-j2-yAK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7hG-Qr-cFr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PBe-LA-piO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iLc-Zc-pbo" kind="relationship" relationship="rootViewController" id="vVA-rS-Dih"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BmQ-tu-HDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="161.59999999999999" y="245.18666666666667"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
