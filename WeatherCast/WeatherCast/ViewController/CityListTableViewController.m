@@ -8,6 +8,8 @@
 
 #import "CityListTableViewController.h"
 #import "AddCityViewController.h"
+#import "ConstDef.h"
+
 @interface CityListTableViewController ()
 {
     NSMutableArray* cityArray;
@@ -30,13 +32,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return cityArray.count;
 }
@@ -53,6 +53,13 @@
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60.0f;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10.0f;
+}
 
 /*
 // Override to support conditional editing of the table view.

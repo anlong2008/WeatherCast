@@ -16,6 +16,8 @@
 		FD1D49801B10E65400CC9863 /* WeatherCastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D497F1B10E65400CC9863 /* WeatherCastTests.m */; };
 		FD1D498E1B10F27C00CC9863 /* CityListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D498D1B10F27C00CC9863 /* CityListTableViewController.m */; };
 		FD1D49911B10F2BA00CC9863 /* AddCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49901B10F2BA00CC9863 /* AddCityViewController.m */; };
+		FD1D49941B11C06F00CC9863 /* WeatherDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49931B11C06F00CC9863 /* WeatherDetailViewController.m */; };
+		FD1D49971B11C20600CC9863 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49961B11C20600CC9863 /* WeatherModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,11 @@
 		FD1D498D1B10F27C00CC9863 /* CityListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityListTableViewController.m; path = ViewController/CityListTableViewController.m; sourceTree = "<group>"; };
 		FD1D498F1B10F2BA00CC9863 /* AddCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddCityViewController.h; path = ViewController/AddCityViewController.h; sourceTree = "<group>"; };
 		FD1D49901B10F2BA00CC9863 /* AddCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddCityViewController.m; path = ViewController/AddCityViewController.m; sourceTree = "<group>"; };
+		FD1D49921B11C06F00CC9863 /* WeatherDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherDetailViewController.h; path = ViewController/WeatherDetailViewController.h; sourceTree = "<group>"; };
+		FD1D49931B11C06F00CC9863 /* WeatherDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherDetailViewController.m; path = ViewController/WeatherDetailViewController.m; sourceTree = "<group>"; };
+		FD1D49951B11C20600CC9863 /* WeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherModel.h; path = Model/WeatherModel.h; sourceTree = "<group>"; };
+		FD1D49961B11C20600CC9863 /* WeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherModel.m; path = Model/WeatherModel.m; sourceTree = "<group>"; };
+		FD1D49981B11C87900CC9863 /* ConstDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstDef.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +124,7 @@
 				FD1D49701B10E65400CC9863 /* Images.xcassets */,
 				FD1D49721B10E65400CC9863 /* LaunchScreen.xib */,
 				FD1D49631B10E65400CC9863 /* Supporting Files */,
+				FD1D49981B11C87900CC9863 /* ConstDef.h */,
 			);
 			path = WeatherCast;
 			sourceTree = "<group>";
@@ -150,6 +158,8 @@
 		FD1D49891B10F21B00CC9863 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FD1D49951B11C20600CC9863 /* WeatherModel.h */,
+				FD1D49961B11C20600CC9863 /* WeatherModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -168,6 +178,8 @@
 				FD1D498D1B10F27C00CC9863 /* CityListTableViewController.m */,
 				FD1D498F1B10F2BA00CC9863 /* AddCityViewController.h */,
 				FD1D49901B10F2BA00CC9863 /* AddCityViewController.m */,
+				FD1D49921B11C06F00CC9863 /* WeatherDetailViewController.h */,
+				FD1D49931B11C06F00CC9863 /* WeatherDetailViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -307,7 +319,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD1D49971B11C20600CC9863 /* WeatherModel.m in Sources */,
 				FD1D49691B10E65400CC9863 /* AppDelegate.m in Sources */,
+				FD1D49941B11C06F00CC9863 /* WeatherDetailViewController.m in Sources */,
 				FD1D49661B10E65400CC9863 /* main.m in Sources */,
 				FD1D498E1B10F27C00CC9863 /* CityListTableViewController.m in Sources */,
 				FD1D49911B10F2BA00CC9863 /* AddCityViewController.m in Sources */,
