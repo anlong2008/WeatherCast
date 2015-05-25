@@ -8,11 +8,15 @@
 
 #import "CityListTableViewController.h"
 #import "AddCityViewController.h"
+#import "WeatherModel.h"
 #import "ConstDef.h"
+#import "SBJson4.h"
+#import "AFNetworking.h"
 
 @interface CityListTableViewController ()
 {
     NSMutableArray* cityArray;
+    NSMutableDictionary* weatherInfoDict;
 }
 @end
 
@@ -22,6 +26,10 @@
     [super viewDidLoad];
     
     cityArray = [[NSMutableArray alloc] init];
+    weatherInfoDict = [[NSMutableDictionary alloc] init];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigation-bar.png"] forBarMetrics:UIBarMetricsDefault];
+    
+    [self refreshWeatherData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +58,11 @@
     
     cell.textLabel.text = [cityArray objectAtIndex:indexPath.row];
     
+    WeatherModel* weatherModel = [weatherInfoDict objectForKey:[cityArray objectAtIndex:indexPath.row]];
+    WeatherData* data = ((WeatherData*)[weatherModel.weather_data objectAtIndex:0]);
+    if(data){
+       cell.detailTextLabel.text = data.weather;
+    }
     return cell;
 }
 
@@ -111,7 +124,62 @@
     if(addCityVC && addCityVC.cityName && ![addCityVC.cityName isEqual:@""]){
         [cityArray addObject:addCityVC.cityName];
         
-        [self.tableView reloadData];
+        [self refreshWeatherData];
     }
+}
+
+-(BOOL) refreshWeatherData {
+    
+    [self requestData];
+
+    return YES;
+}
+
+-(void) requestData {
+    
+    NSMutableString* strCitys = [[NSMutableString alloc] init];
+    for ( NSInteger i = 0; i < [cityArray count]; i ++ ) {
+        [strCitys appendString:[cityArray objectAtIndex:i]];
+        if( i < ([cityArray count] - 1 )){
+            [strCitys appendString:@"|"];
+        }
+    }
+    
+    if ([strCitys isEqual:@""]) {
+        return;
+    }
+    
+    NSString* url = URL_GET_WEATHER;
+     NSDictionary *parameter=@{@"location": strCitys ,@"output": @"json",@"ak": @"vprRmjakEGo0ONk5kAVo5Gie", @"mcode": @"long.Weather"};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:url parameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ([responseObject isKindOfClass:[NSArray class]]) {
+            NSArray* array = responseObject;
+            for (NSDictionary* dict in array) {
+                NSArray* results = [dict objectForKey:@"results"];
+                for (NSDictionary* dictCity in results) {
+                    WeatherModel* weatherModel = [[WeatherModel alloc] initWithDict:dictCity];
+                    [weatherInfoDict setObject:weatherModel forKey:weatherModel.currentCity];
+                }
+            }
+        }else if([responseObject isKindOfClass:[NSDictionary class]]){
+            NSDictionary* dict = responseObject;
+            NSArray* results = [dict objectForKey:@"results"];
+            for (NSDictionary* dictCity in results) {
+                WeatherModel* weatherModel = [[WeatherModel alloc] initWithDict:dictCity];
+                [weatherInfoDict setObject:weatherModel forKey:weatherModel.currentCity];
+            }
+        }
+        else{
+            
+        }
+        // refresh table view
+        [self.tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error: %@", error);
+    }];
 }
 @end

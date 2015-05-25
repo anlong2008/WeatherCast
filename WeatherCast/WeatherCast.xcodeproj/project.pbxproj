@@ -18,6 +18,10 @@
 		FD1D49911B10F2BA00CC9863 /* AddCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49901B10F2BA00CC9863 /* AddCityViewController.m */; };
 		FD1D49941B11C06F00CC9863 /* WeatherDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49931B11C06F00CC9863 /* WeatherDetailViewController.m */; };
 		FD1D49971B11C20600CC9863 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49961B11C20600CC9863 /* WeatherModel.m */; };
+		FD1D499E1B11CB6600CC9863 /* navigation-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = FD1D499A1B11CB6600CC9863 /* navigation-bar.png */; };
+		FD1D499F1B11CB6600CC9863 /* navigation-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD1D499B1B11CB6600CC9863 /* navigation-bar@2x.png */; };
+		FD1D49A01B11CB6600CC9863 /* navigation-bar64.png in Resources */ = {isa = PBXBuildFile; fileRef = FD1D499C1B11CB6600CC9863 /* navigation-bar64.png */; };
+		FD1D49A11B11CB6600CC9863 /* navigation-bar128@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FD1D499D1B11CB6600CC9863 /* navigation-bar128@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,10 @@
 		FD1D49951B11C20600CC9863 /* WeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherModel.h; path = Model/WeatherModel.h; sourceTree = "<group>"; };
 		FD1D49961B11C20600CC9863 /* WeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherModel.m; path = Model/WeatherModel.m; sourceTree = "<group>"; };
 		FD1D49981B11C87900CC9863 /* ConstDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstDef.h; sourceTree = "<group>"; };
+		FD1D499A1B11CB6600CC9863 /* navigation-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar.png"; path = "Resources/navigation-bar.png"; sourceTree = "<group>"; };
+		FD1D499B1B11CB6600CC9863 /* navigation-bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar@2x.png"; path = "Resources/navigation-bar@2x.png"; sourceTree = "<group>"; };
+		FD1D499C1B11CB6600CC9863 /* navigation-bar64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar64.png"; path = "Resources/navigation-bar64.png"; sourceTree = "<group>"; };
+		FD1D499D1B11CB6600CC9863 /* navigation-bar128@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation-bar128@2x.png"; path = "Resources/navigation-bar128@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,7 @@
 		FD1D49621B10E65400CC9863 /* WeatherCast */ = {
 			isa = PBXGroup;
 			children = (
+				FD1D49991B11CB5200CC9863 /* Resources */,
 				FD1D498B1B10F22D00CC9863 /* ViewController */,
 				FD1D498A1B10F22500CC9863 /* View */,
 				FD1D49891B10F21B00CC9863 /* Model */,
@@ -182,6 +191,17 @@
 				FD1D49931B11C06F00CC9863 /* WeatherDetailViewController.m */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		FD1D49991B11CB5200CC9863 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FD1D499A1B11CB6600CC9863 /* navigation-bar.png */,
+				FD1D499B1B11CB6600CC9863 /* navigation-bar@2x.png */,
+				FD1D499C1B11CB6600CC9863 /* navigation-bar64.png */,
+				FD1D499D1B11CB6600CC9863 /* navigation-bar128@2x.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +286,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD1D499F1B11CB6600CC9863 /* navigation-bar@2x.png in Resources */,
 				FD1D496F1B10E65400CC9863 /* Main.storyboard in Resources */,
 				FD1D49741B10E65400CC9863 /* LaunchScreen.xib in Resources */,
+				FD1D49A11B11CB6600CC9863 /* navigation-bar128@2x.png in Resources */,
+				FD1D49A01B11CB6600CC9863 /* navigation-bar64.png in Resources */,
 				FD1D49711B10E65400CC9863 /* Images.xcassets in Resources */,
+				FD1D499E1B11CB6600CC9863 /* navigation-bar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +476,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WeatherCast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -463,6 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WeatherCast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
