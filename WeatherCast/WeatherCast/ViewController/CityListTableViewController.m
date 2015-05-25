@@ -27,7 +27,7 @@
     
     cityArray = [[NSMutableArray alloc] init];
     weatherInfoDict = [[NSMutableDictionary alloc] init];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigation-bar.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigation-bar64.png"] forBarMetrics:UIBarMetricsDefault];
     
     [self refreshWeatherData];
 }
@@ -72,6 +72,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10.0f;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 /*

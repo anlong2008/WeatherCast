@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *cityTextField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneItemBar;
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelItemBar;
 @end
 
