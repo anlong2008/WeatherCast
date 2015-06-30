@@ -12,6 +12,9 @@
 #import "ConstDef.h"
 #import "SBJson4.h"
 #import "AFNetworking.h"
+#import "SVPullToREfresh.h"
+
+#define COLOR_BEE_THEME [UIColor colorWithRed:74.0/255 green:189.0f/255 blue:204.0f/255 alpha:1.0]
 
 @interface CityListTableViewController ()
 {
@@ -27,9 +30,19 @@
     
     cityArray = [[NSMutableArray alloc] init];
     weatherInfoDict = [[NSMutableDictionary alloc] init];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigation-bar64.png"] forBarMetrics:UIBarMetricsDefault];
     
-    [self refreshWeatherData];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        // Load resources for iOS 6.1 or earlier
+        self.navigationController.navigationBar.tintColor = COLOR_BEE_THEME;
+    } else {
+        // Load resources for iOS 7 or later
+        self.navigationController.navigationBar.barTintColor = COLOR_BEE_THEME;
+    }
+    
+    //TODO 读取已经存储的城市
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [self refreshWeatherData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,18 +69,24 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuserIdentifier];
     }
     
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:20.0f];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0f];
+    cell.detailTextLabel.textColor = [UIColor lightGrayColor];
     cell.textLabel.text = [cityArray objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     WeatherModel* weatherModel = [weatherInfoDict objectForKey:[cityArray objectAtIndex:indexPath.row]];
     WeatherData* data = ((WeatherData*)[weatherModel.weather_data objectAtIndex:0]);
     if(data){
-       cell.detailTextLabel.text = data.weather;
+        
+        NSString *strData = [NSString stringWithFormat:@"%@  %@  %@", data.weather, data.temperature, data.wind];
+       cell.detailTextLabel.text = strData;
     }
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60.0f;
+    return 80.0f;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -126,6 +145,7 @@
     AddCityViewController* addCityVC = (AddCityViewController*)[segue sourceViewController];
     
     if(addCityVC && addCityVC.cityName && ![addCityVC.cityName isEqual:@""]){
+        // 存储城市
         [cityArray addObject:addCityVC.cityName];
         
         [self refreshWeatherData];
