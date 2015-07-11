@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56834D8E1B50009E00F66287 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56834D811B50009E00F66287 /* ProvincesAndCities.plist */; };
+		56834D8F1B50009E00F66287 /* TSLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56834D831B50009E00F66287 /* TSLocateView.m */; };
+		56834D901B50009E00F66287 /* TSLocateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56834D841B50009E00F66287 /* TSLocateView.xib */; };
+		56834D911B50009E00F66287 /* TSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56834D861B50009E00F66287 /* TSLocation.m */; };
+		56DC3B231B5119AF001D321C /* UIImage+wiRoundedRectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DC3B221B5119AF001D321C /* UIImage+wiRoundedRectImage.m */; };
+		56DC3B261B511A85001D321C /* UIImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DC3B251B511A85001D321C /* UIImageUtil.m */; };
 		A0132160C4D5F5E0BB545374 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FC04F58B25D1F081F99EAD /* libPods.a */; };
 		FD1D49661B10E65400CC9863 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49651B10E65400CC9863 /* main.m */; };
 		FD1D49691B10E65400CC9863 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49681B10E65400CC9863 /* AppDelegate.m */; };
@@ -15,7 +21,6 @@
 		FD1D49741B10E65400CC9863 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD1D49721B10E65400CC9863 /* LaunchScreen.xib */; };
 		FD1D49801B10E65400CC9863 /* WeatherCastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D497F1B10E65400CC9863 /* WeatherCastTests.m */; };
 		FD1D498E1B10F27C00CC9863 /* CityListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D498D1B10F27C00CC9863 /* CityListTableViewController.m */; };
-		FD1D49911B10F2BA00CC9863 /* AddCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49901B10F2BA00CC9863 /* AddCityViewController.m */; };
 		FD1D49941B11C06F00CC9863 /* WeatherDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49931B11C06F00CC9863 /* WeatherDetailViewController.m */; };
 		FD1D49971B11C20600CC9863 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D49961B11C20600CC9863 /* WeatherModel.m */; };
 		FD1D499E1B11CB6600CC9863 /* navigation-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = FD1D499A1B11CB6600CC9863 /* navigation-bar.png */; };
@@ -46,6 +51,16 @@
 
 /* Begin PBXFileReference section */
 		009A42F539A3DBBC56560059 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		56834D811B50009E00F66287 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
+		56834D821B50009E00F66287 /* TSLocateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocateView.h; sourceTree = "<group>"; };
+		56834D831B50009E00F66287 /* TSLocateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocateView.m; sourceTree = "<group>"; };
+		56834D841B50009E00F66287 /* TSLocateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSLocateView.xib; sourceTree = "<group>"; };
+		56834D851B50009E00F66287 /* TSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocation.h; sourceTree = "<group>"; };
+		56834D861B50009E00F66287 /* TSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocation.m; sourceTree = "<group>"; };
+		56DC3B211B5119AF001D321C /* UIImage+wiRoundedRectImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+wiRoundedRectImage.h"; sourceTree = "<group>"; };
+		56DC3B221B5119AF001D321C /* UIImage+wiRoundedRectImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+wiRoundedRectImage.m"; sourceTree = "<group>"; };
+		56DC3B241B511A85001D321C /* UIImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageUtil.h; sourceTree = "<group>"; };
+		56DC3B251B511A85001D321C /* UIImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageUtil.m; sourceTree = "<group>"; };
 		AF633FE5E27B9D7057DD3417 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B4FC04F58B25D1F081F99EAD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD1D49601B10E65400CC9863 /* WeatherCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,8 +76,6 @@
 		FD1D497F1B10E65400CC9863 /* WeatherCastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherCastTests.m; sourceTree = "<group>"; };
 		FD1D498C1B10F27C00CC9863 /* CityListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityListTableViewController.h; path = ViewController/CityListTableViewController.h; sourceTree = "<group>"; };
 		FD1D498D1B10F27C00CC9863 /* CityListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityListTableViewController.m; path = ViewController/CityListTableViewController.m; sourceTree = "<group>"; };
-		FD1D498F1B10F2BA00CC9863 /* AddCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddCityViewController.h; path = ViewController/AddCityViewController.h; sourceTree = "<group>"; };
-		FD1D49901B10F2BA00CC9863 /* AddCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddCityViewController.m; path = ViewController/AddCityViewController.m; sourceTree = "<group>"; };
 		FD1D49921B11C06F00CC9863 /* WeatherDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherDetailViewController.h; path = ViewController/WeatherDetailViewController.h; sourceTree = "<group>"; };
 		FD1D49931B11C06F00CC9863 /* WeatherDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherDetailViewController.m; path = ViewController/WeatherDetailViewController.m; sourceTree = "<group>"; };
 		FD1D49951B11C20600CC9863 /* WeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherModel.h; path = Model/WeatherModel.h; sourceTree = "<group>"; };
@@ -111,6 +124,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		56834D771B50009E00F66287 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				56834D781B50009E00F66287 /* TSLocation */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		56834D781B50009E00F66287 /* TSLocation */ = {
+			isa = PBXGroup;
+			children = (
+				56834D811B50009E00F66287 /* ProvincesAndCities.plist */,
+				56834D821B50009E00F66287 /* TSLocateView.h */,
+				56834D831B50009E00F66287 /* TSLocateView.m */,
+				56834D841B50009E00F66287 /* TSLocateView.xib */,
+				56834D851B50009E00F66287 /* TSLocation.h */,
+				56834D861B50009E00F66287 /* TSLocation.m */,
+			);
+			path = TSLocation;
+			sourceTree = "<group>";
+		};
+		56DC3B201B51199B001D321C /* ToolLibs */ = {
+			isa = PBXGroup;
+			children = (
+				56DC3B241B511A85001D321C /* UIImageUtil.h */,
+				56DC3B251B511A85001D321C /* UIImageUtil.m */,
+				56DC3B211B5119AF001D321C /* UIImage+wiRoundedRectImage.h */,
+				56DC3B221B5119AF001D321C /* UIImage+wiRoundedRectImage.m */,
+			);
+			path = ToolLibs;
+			sourceTree = "<group>";
+		};
 		A02034B169D8663BCC2F3FBC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,9 +188,10 @@
 		FD1D49621B10E65400CC9863 /* WeatherCast */ = {
 			isa = PBXGroup;
 			children = (
+				56DC3B201B51199B001D321C /* ToolLibs */,
+				56834D771B50009E00F66287 /* View */,
 				FD1D49991B11CB5200CC9863 /* Resources */,
 				FD1D498B1B10F22D00CC9863 /* ViewController */,
-				FD1D498A1B10F22500CC9863 /* View */,
 				FD1D49891B10F21B00CC9863 /* Model */,
 				FD1D49671B10E65400CC9863 /* AppDelegate.h */,
 				FD1D49681B10E65400CC9863 /* AppDelegate.m */,
@@ -193,20 +239,11 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		FD1D498A1B10F22500CC9863 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
 		FD1D498B1B10F22D00CC9863 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				FD1D498C1B10F27C00CC9863 /* CityListTableViewController.h */,
 				FD1D498D1B10F27C00CC9863 /* CityListTableViewController.m */,
-				FD1D498F1B10F2BA00CC9863 /* AddCityViewController.h */,
-				FD1D49901B10F2BA00CC9863 /* AddCityViewController.m */,
 				FD1D49921B11C06F00CC9863 /* WeatherDetailViewController.h */,
 				FD1D49931B11C06F00CC9863 /* WeatherDetailViewController.m */,
 			);
@@ -318,6 +355,7 @@
 			files = (
 				FD1D499F1B11CB6600CC9863 /* navigation-bar@2x.png in Resources */,
 				FD1D49B01B1328A900CC9863 /* cancel_hover.png in Resources */,
+				56834D8E1B50009E00F66287 /* ProvincesAndCities.plist in Resources */,
 				FD1D49B51B13298100CC9863 /* bar_control_bg.png in Resources */,
 				FD1D49B11B1328A900CC9863 /* cancel_hover5.png in Resources */,
 				FD1D49B61B13298100CC9863 /* bar_control_bg@2x.png in Resources */,
@@ -333,6 +371,7 @@
 				FD1D49A01B11CB6600CC9863 /* navigation-bar64.png in Resources */,
 				FD1D49711B10E65400CC9863 /* Images.xcassets in Resources */,
 				FD1D499E1B11CB6600CC9863 /* navigation-bar.png in Resources */,
+				56834D901B50009E00F66287 /* TSLocateView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,7 +427,10 @@
 				FD1D49941B11C06F00CC9863 /* WeatherDetailViewController.m in Sources */,
 				FD1D49661B10E65400CC9863 /* main.m in Sources */,
 				FD1D498E1B10F27C00CC9863 /* CityListTableViewController.m in Sources */,
-				FD1D49911B10F2BA00CC9863 /* AddCityViewController.m in Sources */,
+				56834D8F1B50009E00F66287 /* TSLocateView.m in Sources */,
+				56DC3B261B511A85001D321C /* UIImageUtil.m in Sources */,
+				56834D911B50009E00F66287 /* TSLocation.m in Sources */,
+				56DC3B231B5119AF001D321C /* UIImage+wiRoundedRectImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CityListTableViewController : UITableViewController
+@interface CityListTableViewController : UITableViewController<UIActionSheetDelegate>
 
 @end

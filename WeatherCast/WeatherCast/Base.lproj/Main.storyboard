@@ -5,11 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--City List-->
+        <!--城市列表-->
         <scene sceneID="Mgq-MB-62q">
             <objects>
                 <tableViewController id="iLc-Zc-pbo" customClass="CityListTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ayM-fS-FQW">
+                    <tableView key="view" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ayM-fS-FQW">
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -45,10 +45,10 @@
                             <outlet property="delegate" destination="iLc-Zc-pbo" id="kHd-T5-hbG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="City List" id="mV7-Jk-4J1">
+                    <navigationItem key="navigationItem" title="城市列表" id="mV7-Jk-4J1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="nIj-wo-aCL">
                             <connections>
-                                <segue destination="yJp-W5-DyN" kind="push" id="cBv-3R-IOp"/>
+                                <action selector="addCity:" destination="iLc-Zc-pbo" id="q3f-nZ-IgP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -56,46 +56,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHd-Hw-wuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="594.66666666666663" y="245.18666666666667"/>
-        </scene>
-        <!--Add New City-->
-        <scene sceneID="0SH-IS-euL">
-            <objects>
-                <viewController id="yJp-W5-DyN" customClass="AddCityViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bxe-8K-jdv">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter new city" minimumFontSize="17" id="n2f-Sh-wmg">
-                                <rect key="frame" x="9" y="105" width="302" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add New City" id="7zF-ig-iXQ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="b8V-ZH-Y9X">
-                            <connections>
-                                <segue destination="tFO-oH-2vd" kind="unwind" unwindAction="popForSegue:" id="04G-8F-Ux1"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="S0o-i1-9fy">
-                            <connections>
-                                <segue destination="tFO-oH-2vd" kind="unwind" unwindAction="popForSegue:" id="YMv-rk-LFL"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="cancelItemBar" destination="b8V-ZH-Y9X" id="IhC-jf-UeM"/>
-                        <outlet property="cityTextField" destination="n2f-Sh-wmg" id="lQp-DD-tWL"/>
-                        <outlet property="doneItemBar" destination="S0o-i1-9fy" id="Yyr-DT-9Qu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6zW-ey-S6j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="tFO-oH-2vd" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1031" y="245"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="vpw-tY-dcC">

@@ -13,14 +13,20 @@
 #import "SBJson4.h"
 #import "AFNetworking.h"
 #import "SVPullToREfresh.h"
+#import "FMDB.h"
+#import "TSLocateView.h"
+#import "UIImageUtil.h"
+#import "UIImage+wiRoundedRectImage.h"
 
 #define COLOR_BEE_THEME [UIColor colorWithRed:74.0/255 green:189.0f/255 blue:204.0f/255 alpha:1.0]
 
 @interface CityListTableViewController ()
 {
-    NSMutableArray* cityArray;
-    NSMutableDictionary* weatherInfoDict;
+    NSMutableArray      * cityArray;
+    NSMutableDictionary * weatherInfoDict;
+    FMDatabase          * database;
 }
+
 @end
 
 @implementation CityListTableViewController
@@ -38,10 +44,29 @@
         // Load resources for iOS 7 or later
         self.navigationController.navigationBar.barTintColor = COLOR_BEE_THEME;
     }
-    
-    //TODO 读取已经存储的城市
+    //
+    database = [[FMDatabase alloc] initWithPath:@"/tmp/weather.db"];
+    if ([database open]) {
+        NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS CUSTOMER_CITY (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)";
+        
+        FMResultSet *result = [database executeQuery:sqlCreateTable];
+        if (nil == result) {
+            NSLog(@"创建表出错");
+            return;
+        }
+        // 读取已经存在的城市
+        NSString *sqlQuery = @"SELECT * FROM CUSTOMER_CITY";
+        FMResultSet *rs = [database executeQuery:sqlQuery];
+        while ([rs next]) {
+            NSString *name = [rs stringForColumn:@"name"];
+            if (name) {
+                [cityArray addObject:name];
+            }
+        }
+    }
+    __block id that = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
-        [self refreshWeatherData];
+        [that refreshWeatherData];
     }];
 }
 
@@ -69,16 +94,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuserIdentifier];
     }
     
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:20.0f];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0f];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:14.0f];
     cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-    cell.textLabel.text = [cityArray objectAtIndex:indexPath.row];
+    NSString *cityName = [cityArray objectAtIndex:indexPath.row];
+    UIImage *image = [UIImageUtil imageFromText:cityName withFont:20.0f withColor:[UIColor whiteColor]];
+    image = [UIImage createRoundedRectImage:image size:CGSizeMake(25, 25) radius:12.5f];
+    cell.imageView.image = image;
+    cell.textLabel.text = cityName;
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     WeatherModel* weatherModel = [weatherInfoDict objectForKey:[cityArray objectAtIndex:indexPath.row]];
     WeatherData* data = ((WeatherData*)[weatherModel.weather_data objectAtIndex:0]);
     if(data){
-        
         NSString *strData = [NSString stringWithFormat:@"%@  %@  %@", data.weather, data.temperature, data.wind];
        cell.detailTextLabel.text = strData;
     }
@@ -86,7 +115,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80.0f;
+    return 50.0f;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -147,6 +176,8 @@
     if(addCityVC && addCityVC.cityName && ![addCityVC.cityName isEqual:@""]){
         // 存储城市
         [cityArray addObject:addCityVC.cityName];
+        NSString *str = [NSString stringWithFormat:@"INSERT INTO CUSTOMER_CITY (name) VALUES (%@)", addCityVC.cityName];
+        [database executeQuery:str];
         
         [self refreshWeatherData];
     }
@@ -157,6 +188,27 @@
     [self requestData];
 
     return YES;
+}
+
+- (IBAction)addCity:(id)sender {
+    TSLocateView *locateView = [[TSLocateView alloc] initWithTitle:@"定位城市" delegate:self];
+    locateView.backgroundColor = COLOR_BEE_THEME;
+    [locateView showInView:self.tableView];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    TSLocateView *locateView = (TSLocateView *)actionSheet;
+    TSLocation *location = locateView.locate;
+    NSLog(@"city:%@ lat:%f lon:%f", location.city, location.latitude, location.longitude);
+    //You can uses location to your application.
+    if(buttonIndex == 0) {
+        NSLog(@"Cancel");
+    }else {
+        NSLog(@"Select");
+        [cityArray addObject:location.city];
+        [self refreshWeatherData];
+    }
 }
 
 -(void) requestData {
