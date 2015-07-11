@@ -7,7 +7,6 @@
 //
 
 #import "CityListTableViewController.h"
-#import "AddCityViewController.h"
 #import "WeatherModel.h"
 #import "ConstDef.h"
 #import "SBJson4.h"
@@ -171,16 +170,7 @@
 */
 
 - (IBAction)popForSegue:(UIStoryboardSegue *)segue {
-    AddCityViewController* addCityVC = (AddCityViewController*)[segue sourceViewController];
-    
-    if(addCityVC && addCityVC.cityName && ![addCityVC.cityName isEqual:@""]){
-        // 存储城市
-        [cityArray addObject:addCityVC.cityName];
-        NSString *str = [NSString stringWithFormat:@"INSERT INTO CUSTOMER_CITY (name) VALUES (%@)", addCityVC.cityName];
-        [database executeQuery:str];
-        
-        [self refreshWeatherData];
-    }
+
 }
 
 -(BOOL) refreshWeatherData {
