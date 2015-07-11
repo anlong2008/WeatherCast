@@ -17,7 +17,7 @@
 #import "UIImageUtil.h"
 #import "UIImage+wiRoundedRectImage.h"
 
-#define COLOR_BEE_THEME [UIColor colorWithRed:74.0/255 green:189.0f/255 blue:204.0f/255 alpha:1.0]
+#define COLOR_BEE_THEME [UIColor colorWithRed:74.0f/255 green:189.0f/255 blue:204.0f/255 alpha:1.0]
 
 @interface CityListTableViewController ()
 {
@@ -43,18 +43,22 @@
         // Load resources for iOS 7 or later
         self.navigationController.navigationBar.barTintColor = COLOR_BEE_THEME;
     }
+    
+    NSLog(@"path:%@", [NSBundle mainBundle].resourcePath);
     //
-    database = [[FMDatabase alloc] initWithPath:@"/tmp/weather.db"];
+    NSString *strPath = [NSString stringWithFormat:@"%@/tmp/weather.db", NSHomeDirectory()];
+    NSLog(@"strPath: %@", strPath);
+    database = [[FMDatabase alloc] initWithPath:strPath];
     if ([database open]) {
-        NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS CUSTOMER_CITY (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)";
-        
-        FMResultSet *result = [database executeQuery:sqlCreateTable];
-        if (nil == result) {
+//        NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS custom_city (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)";
+        NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS custom_city (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)";
+        BOOL result = [database executeUpdate:sqlCreateTable];
+        if (NO == result) {
             NSLog(@"创建表出错");
             return;
         }
         // 读取已经存在的城市
-        NSString *sqlQuery = @"SELECT * FROM CUSTOMER_CITY";
+        NSString *sqlQuery = @"SELECT * FROM custom_city";
         FMResultSet *rs = [database executeQuery:sqlQuery];
         while ([rs next]) {
             NSString *name = [rs stringForColumn:@"name"];
@@ -63,10 +67,16 @@
             }
         }
     }
+    [self refreshWeatherData];
     __block id that = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
         [that refreshWeatherData];
     }];
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [database close];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,31 +143,20 @@
 }
 */
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        // 删除数据库 delete from custom_city where name=
+        BOOL result = [database executeUpdate:@"delete from custom_city where name=?", [cityArray objectAtIndex:indexPath.row]];
+        [cityArray removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-*/
 
 /*
 #pragma mark - Navigation
@@ -176,12 +175,13 @@
 -(BOOL) refreshWeatherData {
     
     [self requestData];
+    [self.tableView reloadData];
 
     return YES;
 }
 
 - (IBAction)addCity:(id)sender {
-    TSLocateView *locateView = [[TSLocateView alloc] initWithTitle:@"定位城市" delegate:self];
+    TSLocateView *locateView = [[TSLocateView alloc] initWithTitle:@"城市选择" delegate:self];
     locateView.backgroundColor = COLOR_BEE_THEME;
     [locateView showInView:self.tableView];
 }
@@ -191,13 +191,13 @@
     TSLocateView *locateView = (TSLocateView *)actionSheet;
     TSLocation *location = locateView.locate;
     NSLog(@"city:%@ lat:%f lon:%f", location.city, location.latitude, location.longitude);
-    //You can uses location to your application.
     if(buttonIndex == 0) {
         NSLog(@"Cancel");
     }else {
-        NSLog(@"Select");
         [cityArray addObject:location.city];
         [self refreshWeatherData];
+        // 在数据库中添加
+        [database executeUpdate:@"INSERT INTO custom_city (name) VALUES (?)", location.city];
     }
 }
 

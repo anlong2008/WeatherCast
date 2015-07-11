@@ -50,7 +50,9 @@
     [self setAlpha:1.0f];
     [self.layer addAnimation:animation forKey:@"DDLocateView"];
     
-    self.frame = CGRectMake(0, view.frame.size.height - self.frame.size.height, self.frame.size.width, self.frame.size.height);
+    self.frame = CGRectMake(0, view.frame.size.height - self.frame.size.height, view.frame.size.width, self.frame.size.height);
+    
+    self.titleLabel.frame = CGRectMake(0, self.titleLabel.frame.origin.y, view.frame.size.width, self.titleLabel.frame.size.height);
     
     [view addSubview:self];
 }
@@ -145,7 +147,6 @@
     if(self.delegate) {
         [self.delegate actionSheet:self clickedButtonAtIndex:1];
     }
-    
 }
 
 @end
