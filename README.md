@@ -1,2 +1,2 @@
 # WeatherCast
-for weather bordercast app at ios paltfrom
+for weather bordercast app at ios paltform
