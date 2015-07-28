@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5614918A1B5D546900816666 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561491891B5D546900816666 /* CoreLocation.framework */; };
+		5614918E1B5D597200816666 /* JXBAdPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5614918D1B5D597200816666 /* JXBAdPageView.m */; };
+		566532A51B67ED760079D659 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5665329A1B67ED760079D659 /* PNBar.m */; };
+		566532A61B67ED760079D659 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5665329C1B67ED760079D659 /* PNBarChart.m */; };
+		566532A71B67ED760079D659 /* PNChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5665329E1B67ED760079D659 /* PNChart.m */; };
+		566532A81B67ED760079D659 /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 566532A01B67ED760079D659 /* PNChartLabel.m */; };
+		566532A91B67ED760079D659 /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 566532A21B67ED760079D659 /* PNColor.m */; };
+		566532AA1B67ED760079D659 /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 566532A41B67ED760079D659 /* PNLineChart.m */; };
+		566532AD1B67FF580079D659 /* IndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 566532AC1B67FF580079D659 /* IndexView.m */; };
 		56834D8E1B50009E00F66287 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56834D811B50009E00F66287 /* ProvincesAndCities.plist */; };
 		56834D8F1B50009E00F66287 /* TSLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56834D831B50009E00F66287 /* TSLocateView.m */; };
 		56834D901B50009E00F66287 /* TSLocateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56834D841B50009E00F66287 /* TSLocateView.xib */; };
@@ -51,6 +60,23 @@
 
 /* Begin PBXFileReference section */
 		009A42F539A3DBBC56560059 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		561491891B5D546900816666 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5614918C1B5D597200816666 /* JXBAdPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXBAdPageView.h; sourceTree = "<group>"; };
+		5614918D1B5D597200816666 /* JXBAdPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXBAdPageView.m; sourceTree = "<group>"; };
+		566532991B67ED760079D659 /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
+		5665329A1B67ED760079D659 /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
+		5665329B1B67ED760079D659 /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
+		5665329C1B67ED760079D659 /* PNBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBarChart.m; sourceTree = "<group>"; };
+		5665329D1B67ED760079D659 /* PNChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChart.h; sourceTree = "<group>"; };
+		5665329E1B67ED760079D659 /* PNChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChart.m; sourceTree = "<group>"; };
+		5665329F1B67ED760079D659 /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
+		566532A01B67ED760079D659 /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
+		566532A11B67ED760079D659 /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
+		566532A21B67ED760079D659 /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
+		566532A31B67ED760079D659 /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
+		566532A41B67ED760079D659 /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
+		566532AB1B67FF580079D659 /* IndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexView.h; sourceTree = "<group>"; };
+		566532AC1B67FF580079D659 /* IndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexView.m; sourceTree = "<group>"; };
 		56834D811B50009E00F66287 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
 		56834D821B50009E00F66287 /* TSLocateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocateView.h; sourceTree = "<group>"; };
 		56834D831B50009E00F66287 /* TSLocateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocateView.m; sourceTree = "<group>"; };
@@ -102,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5614918A1B5D546900816666 /* CoreLocation.framework in Frameworks */,
 				A0132160C4D5F5E0BB545374 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,15 +146,48 @@
 		524D1610D7AAB600BDD08E99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				561491891B5D546900816666 /* CoreLocation.framework */,
 				B4FC04F58B25D1F081F99EAD /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5614918B1B5D597200816666 /* JXBAdPageView */ = {
+			isa = PBXGroup;
+			children = (
+				5614918C1B5D597200816666 /* JXBAdPageView.h */,
+				5614918D1B5D597200816666 /* JXBAdPageView.m */,
+			);
+			path = JXBAdPageView;
+			sourceTree = "<group>";
+		};
+		566532981B67ED760079D659 /* PNChart */ = {
+			isa = PBXGroup;
+			children = (
+				566532991B67ED760079D659 /* PNBar.h */,
+				5665329A1B67ED760079D659 /* PNBar.m */,
+				5665329B1B67ED760079D659 /* PNBarChart.h */,
+				5665329C1B67ED760079D659 /* PNBarChart.m */,
+				5665329D1B67ED760079D659 /* PNChart.h */,
+				5665329E1B67ED760079D659 /* PNChart.m */,
+				5665329F1B67ED760079D659 /* PNChartLabel.h */,
+				566532A01B67ED760079D659 /* PNChartLabel.m */,
+				566532A11B67ED760079D659 /* PNColor.h */,
+				566532A21B67ED760079D659 /* PNColor.m */,
+				566532A31B67ED760079D659 /* PNLineChart.h */,
+				566532A41B67ED760079D659 /* PNLineChart.m */,
+			);
+			path = PNChart;
+			sourceTree = "<group>";
+		};
 		56834D771B50009E00F66287 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				566532981B67ED760079D659 /* PNChart */,
+				5614918B1B5D597200816666 /* JXBAdPageView */,
 				56834D781B50009E00F66287 /* TSLocation */,
+				566532AB1B67FF580079D659 /* IndexView.h */,
+				566532AC1B67FF580079D659 /* IndexView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -422,14 +482,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				566532AA1B67ED760079D659 /* PNLineChart.m in Sources */,
 				FD1D49971B11C20600CC9863 /* WeatherModel.m in Sources */,
+				5614918E1B5D597200816666 /* JXBAdPageView.m in Sources */,
+				566532A51B67ED760079D659 /* PNBar.m in Sources */,
 				FD1D49691B10E65400CC9863 /* AppDelegate.m in Sources */,
+				566532A91B67ED760079D659 /* PNColor.m in Sources */,
+				566532A61B67ED760079D659 /* PNBarChart.m in Sources */,
 				FD1D49941B11C06F00CC9863 /* WeatherDetailViewController.m in Sources */,
 				FD1D49661B10E65400CC9863 /* main.m in Sources */,
+				566532A81B67ED760079D659 /* PNChartLabel.m in Sources */,
 				FD1D498E1B10F27C00CC9863 /* CityListTableViewController.m in Sources */,
 				56834D8F1B50009E00F66287 /* TSLocateView.m in Sources */,
 				56DC3B261B511A85001D321C /* UIImageUtil.m in Sources */,
+				566532AD1B67FF580079D659 /* IndexView.m in Sources */,
 				56834D911B50009E00F66287 /* TSLocation.m in Sources */,
+				566532A71B67ED760079D659 /* PNChart.m in Sources */,
 				56DC3B231B5119AF001D321C /* UIImage+wiRoundedRectImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,6 +16,8 @@
 #import "TSLocateView.h"
 #import "UIImageUtil.h"
 #import "UIImage+wiRoundedRectImage.h"
+#import "JXBAdPageView.h"
+#import "WeatherDetailViewController.h"
 
 #define COLOR_BEE_THEME [UIColor colorWithRed:74.0f/255 green:189.0f/255 blue:204.0f/255 alpha:1.0]
 
@@ -24,6 +26,8 @@
     NSMutableArray      * cityArray;
     NSMutableDictionary * weatherInfoDict;
     FMDatabase          * database;
+    CLLocationManager *locationManager;
+    JXBAdPageView       *scrollView;
 }
 
 @end
@@ -33,8 +37,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    scrollView = [[JXBAdPageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
+    scrollView.iDisplayTime = 0;
+    [scrollView startAdsWithBlock:@[@"m1",@"m2",@"m3",@"m4",@"m5"] block:^(NSInteger clickIndex){
+        NSLog(@"%d",(int)clickIndex);
+    }];
+    [self.view addSubview:scrollView];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height - 230) style:UITableViewStyleGrouped];
+    self.tableView.frame = CGRectMake(0, 200, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height - 230);
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     cityArray = [[NSMutableArray alloc] init];
     weatherInfoDict = [[NSMutableDictionary alloc] init];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 100.0f;
+    
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         // Load resources for iOS 6.1 or earlier
@@ -74,6 +96,10 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [locationManager startUpdatingLocation];
+}
 - (void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [database close];
@@ -133,6 +159,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    WeatherDetailViewController *detailInfo = [[WeatherDetailViewController alloc] init];
+    detailInfo.weatherModel = [weatherInfoDict valueForKey:[cityArray objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:detailInfo animated:YES];
 }
 
 /*
@@ -221,6 +251,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:url parameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        NSLog(@"获取到的天气数据: %@", responseObject);
+        
         if ([responseObject isKindOfClass:[NSArray class]]) {
             NSArray* array = responseObject;
             for (NSDictionary* dict in array) {
@@ -247,5 +279,46 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error: %@", error);
     }];
+}
+
+#pragma mark Core Location委托方法用于实现位置的更新
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    
+    CLLocation * currLocation = [locations lastObject];
+    
+    NSLog(@"%@", currLocation.description);
+    
+}
+
+//定位代理经纬度回调
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
+    [locationManager stopUpdatingLocation];
+    NSLog(@"location ok");
+    
+    NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
+    
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        for (CLPlacemark * placemark in placemarks) {
+            
+            NSDictionary *test = [placemark addressDictionary];
+            //  Country(国家)  State(城市)  SubLocality(区)
+            NSLog(@"%@", [test objectForKey:@"State"]);
+            
+            [cityArray addObject:[test objectForKey:@"State"]];
+            [self refreshWeatherData];
+            // 在数据库中添加
+            [database executeUpdate:@"INSERT INTO custom_city (name) VALUES (?)", [test objectForKey:@"State"]];
+        }
+    }];
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    
+    NSLog(@"error: %@",error);
+    
 }
 @end

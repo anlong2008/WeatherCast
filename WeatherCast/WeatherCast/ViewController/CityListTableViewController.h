@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <CoreLocation/CLLocationManagerDelegate.h>
 
-@interface CityListTableViewController : UITableViewController<UIActionSheetDelegate>
+@interface CityListTableViewController : UITableViewController<UIActionSheetDelegate, CLLocationManagerDelegate>
 
 @end
