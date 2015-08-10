@@ -9,6 +9,7 @@
 #import "WeatherDetailViewController.h"
 #import "PNChart.h"
 #import "IndexView.h"
+#import "UIFunction.h"
 
 @interface WeatherDetailViewController ()
 @property (strong, nonatomic) UIScrollView *chartScrollView;
@@ -22,14 +23,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = self.weatherModel.currentCity;
+    self.navigationItem.titleView = [UIFunction navgationLabel:self.weatherModel.currentCity];
     
     chartScrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     //Add LineChart
     
     PNChart * lineChart = [[PNChart alloc] initWithFrame:CGRectMake(0, 10.0, SCREEN_WIDTH, 130.0)];
     lineChart.backgroundColor = [UIColor clearColor];
-//    [weatherModel.weather_data objectAtIndex:[]];
     
     NSMutableArray *arrayData = [NSMutableArray arrayWithCapacity:weatherModel.weather_data.count];
     NSMutableArray *arrayDate = [NSMutableArray arrayWithCapacity:weatherModel.weather_data.count];

@@ -944,6 +944,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC1B85BB6F87156ED6BE64DC /* Pods.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: long An (8WHN2Y4649)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1193,6 +1194,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 17A06795777F715F7EF78D59 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: long An (8WHN2Y4649)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;

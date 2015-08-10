@@ -16,6 +16,7 @@
 #import "TSLocateView.h"
 #import "UIImageUtil.h"
 #import "UIImage+wiRoundedRectImage.h"
+#import "UIFunction.h"
 #import "JXBAdPageView.h"
 #import "WeatherDetailViewController.h"
 
@@ -37,16 +38,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    cityArray       = [[NSMutableArray alloc] init];
+    weatherInfoDict = [[NSMutableDictionary alloc] init];
+    
+    [self setNavigationBar];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
+
     scrollView = [[JXBAdPageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
     scrollView.iDisplayTime = 0;
     [scrollView startAdsWithBlock:@[@"m1",@"m2",@"m3",@"m4",@"m5"] block:^(NSInteger clickIndex){
         NSLog(@"%d",(int)clickIndex);
     }];
-    [self.view addSubview:scrollView];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height - 230) style:UITableViewStyleGrouped];
-    self.tableView.frame = CGRectMake(0, 200, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height - 230);
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+//    [self.view addSubview:scrollView];
     
     cityArray = [[NSMutableArray alloc] init];
     weatherInfoDict = [[NSMutableDictionary alloc] init];
@@ -72,7 +75,6 @@
     NSLog(@"strPath: %@", strPath);
     database = [[FMDatabase alloc] initWithPath:strPath];
     if ([database open]) {
-//        NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS custom_city (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)";
         NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS custom_city (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)";
         BOOL result = [database executeUpdate:sqlCreateTable];
         if (NO == result) {
@@ -90,10 +92,6 @@
         }
     }
     [self refreshWeatherData];
-    __block id that = self;
-    [self.tableView addPullToRefreshWithActionHandler:^{
-        [that refreshWeatherData];
-    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,11 +108,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setNavigationBar {
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        // Load resources for iOS 6.1 or earlier
+        self.navigationController.navigationBar.tintColor = COLOR_BEE_THEME;
+    } else {
+        // Load resources for iOS 7 or later
+        self.navigationController.navigationBar.barTintColor = COLOR_BEE_THEME;
+    }
+    
+    self.navigationItem.titleView = [UIFunction navgationLabel:@"城市列表"];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -129,32 +140,57 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuserIdentifier];
     }
     
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:16.0f];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:14.0f];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:20.0f];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:16.0f];
     cell.detailTextLabel.textColor = [UIColor lightGrayColor];
     NSString *cityName = [cityArray objectAtIndex:indexPath.row];
-    UIImage *image = [UIImageUtil imageFromText:cityName withFont:20.0f withColor:[UIColor whiteColor]];
-    image = [UIImage createRoundedRectImage:image size:CGSizeMake(25, 25) radius:12.5f];
-    cell.imageView.image = image;
+//    UIImage *image = [UIImageUtil imageFromText:cityName withFont:20.0f withColor:[UIColor whiteColor]];
+//    image = [UIImage createRoundedRectImage:image size:CGSizeMake(30, 30) radius:15.0f];
+    
     cell.textLabel.text = cityName;
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     WeatherModel* weatherModel = [weatherInfoDict objectForKey:[cityArray objectAtIndex:indexPath.row]];
-    WeatherData* data = ((WeatherData*)[weatherModel.weather_data objectAtIndex:0]);
+    WeatherData* data = ((WeatherData*)[weatherModel.weather_data objectAtIndex:indexPath.section]);
     if(data){
         NSString *strData = [NSString stringWithFormat:@"%@  %@  %@", data.weather, data.temperature, data.wind];
+        
+        if ([data.weather isEqualToString:@"晴"]) {
+            cell.imageView.image = [UIImage imageNamed:@"sunny.png"];
+        }else if([data.weather isEqualToString:@"晴转多云"]) {
+            cell.imageView.image = [UIImage imageNamed:@"cloudy3.png"];
+        }else if([data.weather isEqualToString:@"多云"]) {
+            cell.imageView.image = [UIImage imageNamed:@"cloudy5.png"];
+        }else if([data.weather isEqualToString:@"多云转晴"]) {
+            cell.imageView.image = [UIImage imageNamed:@"cloudy1.png"];
+        }else if([data.weather isEqualToString:@"中雨转大雨"]) {
+            cell.imageView.image = [UIImage imageNamed:@"shower3.png"];
+        }else if([data.weather isEqualToString:@"雷阵雨转多云"]) {
+            cell.imageView.image = [UIImage imageNamed:@"tstorm3.png"];
+        }else if([data.weather isEqualToString:@"多云"]) {
+            cell.imageView.image = [UIImage imageNamed:@"cloudy2.png"];
+        }else if([data.weather isEqualToString:@"多云"]) {
+            cell.imageView.image = [UIImage imageNamed:@"cloudy2.png"];
+        }else if([data.weather isEqualToString:@"多云"]) {
+            cell.imageView.image = [UIImage imageNamed:@"cloudy2.png"];
+        }else if([data.weather isEqualToString:@"多云"]) {
+            cell.imageView.image = [UIImage imageNamed:@"cloudy2.png"];
+        }else{
+            cell.imageView.image = [UIImage imageNamed:@"shower3.png"];
+        }
+        
        cell.detailTextLabel.text = strData;
     }
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50.0f;
+    return 100;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10.0f;
+    return 40.0f;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -188,6 +224,20 @@
     return YES;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *view = nil;
+    if (weatherInfoDict && cityArray.count > 0) {
+        WeatherModel *model = [weatherInfoDict valueForKey:[cityArray objectAtIndex:0]];
+        
+        if (model) {
+            view = [UIFunction tableViewHeaderViewLabel:((WeatherData *)[model.weather_data objectAtIndex:section]).date frame:CGRectMake(0, 0, WIDTH_SCREEN, 40.0f) fontsize:18.0f textColor:[UIColor whiteColor]];
+            view.backgroundColor = [UIColor grayColor];
+            view.alpha = 0.8f;
+        }
+    }
+    return view;
+}
 /*
 #pragma mark - Navigation
 

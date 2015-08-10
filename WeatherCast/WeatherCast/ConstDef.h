@@ -13,4 +13,13 @@
 
 // Nav的主背景色定义
 #define NAV_BG_COLOUR [UIColor colorWithRed:53/255.0 green:169/255.0 blue:237/255.0 alpha:1]
+
+#define COLOR_CLEAR     [UIColor clearColor]
+#define ZERO_SCREEN      0
+#define WIDTH_SCREEN    [UIScreen mainScreen].bounds.size.width
+#define HEIGHT_SCREEN   [UIScreen mainScreen].bounds.size.height
+#define TITLELABELHEIGHT 44  ///<标题Label高
+#define TITLELABELFONT   18  ///<标题Label字体大小
+#define Margin           1.5
+
 #endif
